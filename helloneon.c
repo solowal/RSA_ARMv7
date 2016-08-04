@@ -26,12 +26,6 @@
 #  define  D(...)  do {} while (0)
 #endif
 
-/* return current time in milliseconds */
-static double now_ms(void) {
-	struct timespec res;
-	clock_gettime(CLOCK_REALTIME, &res);
-	return 1000.0 * res.tv_sec + (double) res.tv_nsec / 1e6;
-}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //1024-bit parameters work
@@ -99,8 +93,7 @@ jstring Java_com_example_neon_HelloNeon_stringFromJNI(JNIEnv* env, jobject thiz)
 #ifdef HAVE_NEON
 
 	int count = 0;
-	//t0 = now_ms();
-	//rsa_demo_1024();
+	
 
 	//MUL_2048(r2048,a2048,b2048);
 	//MUL_1024(rr1024,a1024,b1024);
@@ -110,13 +103,7 @@ jstring Java_com_example_neon_HelloNeon_stringFromJNI(JNIEnv* env, jobject thiz)
 	//MM_1024(r1024_2,r1024,m1024);
 	rsa_demo_1024();
 
-	//t1 = now_ms();
-	//time_neon = t1 - t0;
-/*
-	for(count=0;count<64;count++) {
-		D("%d: 0x%x", count, rr1024[count]);
-		//D("%d: 0x%x", count, r2[count]);
-	}/**/
+	
 
 	free(str);
 
